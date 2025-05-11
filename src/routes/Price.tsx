@@ -3,6 +3,12 @@ import { useOutletContext } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { fetchCoinTickers } from "../api";
 
+
+// styled-components
+const Container = styled.div`
+  margin-bottom: 20px;
+`;
+
 // interface
 interface OutletContextType {
   coinId: string;
@@ -53,44 +59,46 @@ function Price() {
       {isLoading ? (
         "Loading price..."
       ) : (
-        <PriceList>
-          <PriceItem>
-            <Desc>From 30 minutes ago</Desc>
-            <Rate $percentChange={priceHistory?.percent_change_30m}>
-              {priceHistory?.percent_change_30m}%
-            </Rate>
-          </PriceItem>
-          <PriceItem>
-            <Desc>From 1 hour ago</Desc>
-            <Rate $percentChange={priceHistory?.percent_change_1h}>
-              {priceHistory?.percent_change_1h}%
-            </Rate>
-          </PriceItem>
-          <PriceItem>
-            <Desc>From 12 hours ago</Desc>
-            <Rate $percentChange={priceHistory?.percent_change_12h}>
-              {priceHistory?.percent_change_12h}%
-            </Rate>
-          </PriceItem>
-          <PriceItem>
-            <Desc>From 7 days ago</Desc>
-            <Rate $percentChange={priceHistory?.percent_change_7d}>
-              {priceHistory?.percent_change_7d}%
-            </Rate>
-          </PriceItem>
-          <PriceItem>
-            <Desc>From 30 days ago</Desc>
-            <Rate $percentChange={priceHistory?.percent_change_30d}>
-              {priceHistory?.percent_change_30d}%
-            </Rate>
-          </PriceItem>
-          <PriceItem>
-            <Desc>From 1 year ago</Desc>
-            <Rate $percentChange={priceHistory?.percent_change_1y}>
-              {priceHistory?.percent_change_1y}%
-            </Rate>
-          </PriceItem>
-        </PriceList>
+        <Container>
+          <PriceList>
+            <PriceItem>
+              <Desc>From 30 minutes ago</Desc>
+              <Rate $percentChange={priceHistory?.percent_change_30m}>
+                {priceHistory?.percent_change_30m}%
+              </Rate>
+            </PriceItem>
+            <PriceItem>
+              <Desc>From 1 hour ago</Desc>
+              <Rate $percentChange={priceHistory?.percent_change_1h}>
+                {priceHistory?.percent_change_1h}%
+              </Rate>
+            </PriceItem>
+            <PriceItem>
+              <Desc>From 12 hours ago</Desc>
+              <Rate $percentChange={priceHistory?.percent_change_12h}>
+                {priceHistory?.percent_change_12h}%
+              </Rate>
+            </PriceItem>
+            <PriceItem>
+              <Desc>From 7 days ago</Desc>
+              <Rate $percentChange={priceHistory?.percent_change_7d}>
+                {priceHistory?.percent_change_7d}%
+              </Rate>
+            </PriceItem>
+            <PriceItem>
+              <Desc>From 30 days ago</Desc>
+              <Rate $percentChange={priceHistory?.percent_change_30d}>
+                {priceHistory?.percent_change_30d}%
+              </Rate>
+            </PriceItem>
+            <PriceItem>
+              <Desc>From 1 year ago</Desc>
+              <Rate $percentChange={priceHistory?.percent_change_1y}>
+                {priceHistory?.percent_change_1y}%
+              </Rate>
+            </PriceItem>
+          </PriceList>
+        </Container>
       )}
     </>
   );
@@ -125,8 +133,8 @@ const Rate = styled.p<{ $percentChange: number }>`
       color: ${props.$percentChange > 0
         ? "#E1533F"
         : props.$percentChange < 0
-        ? "#4780EC"
-        : props.theme.bgColor};
+          ? "#4780EC"
+          : props.theme.bgColor};
     `}
 `;
 
