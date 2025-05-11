@@ -91,7 +91,7 @@ function Coins() {
         <title>CPYPTO-TRACKER</title>
       </Helmet>
       <Header>
-        <Title>Coins</Title>
+        <Title>Crypto Currencies</Title>
       </Header>
       {isLoading
         ? (<Loader>Loading...</Loader>)
