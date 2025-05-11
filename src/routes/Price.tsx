@@ -9,6 +9,40 @@ const Container = styled.div`
   margin-bottom: 20px;
 `;
 
+const PriceList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+const PriceItem = styled.li`
+  display: inline-block;
+  width: calc(50% - 5px);
+  padding: 10px;
+  background-color: ${(props) => props.theme.textColor};
+  border-radius: 10px;
+  color: ${(props) => props.theme.bgColor};
+  list-style: none;
+`;
+
+const Desc = styled.p`
+  font-size: 16px;
+`;
+
+const Rate = styled.p<{ $percentChange: number }>`
+  font-size: 23px;
+  font-weight: bold;
+  ${(props) =>
+    props.$percentChange !== undefined &&
+    css`
+      color: ${props.$percentChange > 0
+        ? "#E1533F"
+        : props.$percentChange < 0
+          ? "#4780EC"
+          : props.theme.bgColor};
+    `}
+`;
+
 // interface
 interface OutletContextType {
   coinId: string;
@@ -103,39 +137,5 @@ function Price() {
     </>
   );
 }
-
-const PriceList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
-
-const PriceItem = styled.li`
-  display: inline-block;
-  width: calc(50% - 5px);
-  padding: 10px;
-  background-color: ${(props) => props.theme.textColor};
-  border-radius: 10px;
-  color: ${(props) => props.theme.bgColor};
-  list-style: none;
-`;
-
-const Desc = styled.p`
-  font-size: 16px;
-`;
-
-const Rate = styled.p<{ $percentChange: number }>`
-  font-size: 28px;
-  font-weight: bold;
-  ${(props) =>
-    props.$percentChange !== undefined &&
-    css`
-      color: ${props.$percentChange > 0
-        ? "#E1533F"
-        : props.$percentChange < 0
-          ? "#4780EC"
-          : props.theme.bgColor};
-    `}
-`;
 
 export default Price;
