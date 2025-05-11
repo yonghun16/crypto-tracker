@@ -12,7 +12,7 @@
     <b>Crypto-Tracker</b>
   </li>
   <li>
-    Features : 코인 목록 보기, 코인 정보 보기(차트, 그래프), 테마 변경 
+    Features : 코인 목록 보기, 코인 정보 보기(차트, 가격), 테마 변경 
   </li>
   <li>
     Using Library : React v18, React Router v7, Recoil, Tanstack Query, Apex Chart, React-halmet-async
