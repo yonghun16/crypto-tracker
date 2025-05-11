@@ -11,7 +11,7 @@ import GoBack from "../components/GoBack";
 const Title = styled.h1`
   display: block;
   margin: 30px auto;
-  font-size: 48px;
+  font-size: 40px;
   color: ${(props) => props.theme.accentColor};
   text-align: center;
 `;
