@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet } from 'react-helmet-async';
 import GoBack from "../components/GoBack";
+import ToggleDark from "../components/ToggleDark";
 
 
 // styled-components 
@@ -37,9 +38,10 @@ const Header = styled.div`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
+  background-color: ${(props) => props.theme.textColor};
   border-radius: 10px;
+  color: ${(props) => props.theme.bgColor};
 `;
 
 const OverviewItem = styled.div`
@@ -72,10 +74,10 @@ const Tab = styled.span<{ $isActive: boolean }>`
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.textColor};
   border-radius: 10px;
   color: ${(props) =>
-    props.$isActive ? props.theme.accentColor : props.theme.textColor};
+    props.$isActive ? props.theme.accentColor : props.theme.bgColor}; 
   a {
     padding: 7px 0px;
     display: block;
@@ -176,6 +178,7 @@ function Coin() {
       </Helmet>
       <Header>
         <GoBack />
+        <ToggleDark />
       </Header>
       <Title>
         {state?.name ? state.name : loading ? "Loading..." : infoData?.name}

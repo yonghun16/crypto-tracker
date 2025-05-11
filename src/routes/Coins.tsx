@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import styled from "styled-components";
 import { fetchCoins } from "../api";
+import ToggleDark from "../components/ToggleDark";
 
 // styled-components 
 const Container = styled.div`
@@ -11,37 +12,38 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const Header = styled.header`
-  height: 10vh;
-  margin: 10px 0;
-  display:  flex;
-  justify-content: center;
+const Header = styled.div`
+  display: flex;
+  justify-content: right;
   align-items: center;
+  margin: 20px 0;
 `;
 
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: white;
-  color: ${props => props.theme.bgColor};
-  border-radius: 15px;
   margin-bottom: 10px;
+  border-radius: 15px;
+  background-color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.bgColor};
   a {
     display: flex;
     align-items: center;
     padding: 20px;
+    color: ${(props) => props.theme.bgColor};
     transition: color 0.2s ease-in;
   }
-  &:hover {
-    a {
-      color: ${props => props.theme.accentColor}
-    }
+  &:hover a {
+    color: ${(props) => props.theme.accentColor};
   }
 `;
 
 const Title = styled.h1`
+  display: block;
+  margin: 30px auto;
   font-size: 40px;
   color: ${(props) => props.theme.accentColor};
+  text-align: center;
 `;
 
 const Loader = styled.span`
@@ -79,8 +81,9 @@ function Coins() {
         <title>CPYPTO-TRACKER</title>
       </Helmet>
       <Header>
-        <Title>Crypto Currencies</Title>
+        <ToggleDark />
       </Header>
+      <Title>Crypto Currencies</Title>
       {isLoading ? (
         <Loader>Loading...</Loader>
       ) : !data ? (
