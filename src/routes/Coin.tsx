@@ -165,28 +165,6 @@ function Coin() {
     navigate("chart");
   }, [navigate]);
 
-  /* react-query 사용 전 fetch 사용방식 */
-  // const [loading, setLoading] = useState(true);                    // 로딩 상태
-  // const [info, setInfo] = useState<InfoData>();                    // 선택된 코인 정보 상태
-  // const [priceInfo, setPriceInfo] = useState<PriceData>();         // 코인 가격 정보 상태
-  //
-  // useEffect(() => {
-  //   (async () => {
-  //     const infoData = await (
-  //       await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)    // 코인 정보 API
-  //     ).json();
-  //
-  //     const priceData = await (
-  //       await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)  // 코인 가격정보 API
-  //     ).json();
-  //
-  //     setInfo(infoData);
-  //     setPriceInfo(priceData);
-  //
-  //     setLoading(false);
-  //   })();
-  // }, [coinId])
-
   const loading = infoLoading || tickersLoading;
 
   return (

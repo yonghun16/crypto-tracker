@@ -72,18 +72,6 @@ function Coins() {
     queryKey: ["allCoins"],
     queryFn: fetchCoins,
   });
-  
-  /* react-query 사용 전 fetch 사용방식 */
-  // const [coins, setCoins] = useState<CoinInterface[]>([]);  // 코인 상태
-  // const [loading, setLoading] = useState(true);  // 로딩 바
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await fetch("https://api.coinpaprika.com/v1/coins");   // API 데이터 받아오기
-  //     const json = await response.json();                                     // JSON 변환
-  //     setCoins(json.slice(0, 100));                                           // 100까지 자르기
-  //     setLoading(false);                                                      // 로딩 완료
-  //   })();
-  // }, [])
 
   return (
     <Container>
@@ -93,31 +81,33 @@ function Coins() {
       <Header>
         <Title>Crypto Currencies</Title>
       </Header>
-      {isLoading
-        ? (<Loader>Loading...</Loader>)
-        : (<CoinsList>
-          {data?.slice(0, 100).map(coin =>
-            <Coin key={coin.id}>
-              <Link
-                to={{
-                  pathname: `/${coin.id}`,
+      {isLoading ? (
+        <Loader>Loading...</Loader>
+      ) : !data ? (
+        <Loader>서버에서 코인 정보를 가져오는데 실패하였습니다.</Loader>
+      ) : (<CoinsList>
+        {data?.slice(0, 100).map(coin =>
+          <Coin key={coin.id}>
+            <Link
+              to={{
+                pathname: `/${coin.id}`,
+              }}
+              state={{
+                name: coin.name       // state를 따로 전달
+              }}
+            >
+              <Img
+                src={`https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/128/color/${coin.symbol.toLowerCase()}.png`}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = "/fallback.png";
                 }}
-                state={{
-                  name: coin.name       // state를 따로 전달
-                }}
-              >
-                <Img
-                  src={`https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/128/color/${coin.symbol.toLowerCase()}.png`}
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = "/fallback.png";
-                  }}
-                />
-                {coin.name} &rarr;
-              </Link>
-            </Coin>)
-          }
-        </CoinsList>
-        )}
+              />
+              {coin.name} &rarr;
+            </Link>
+          </Coin>)
+        }
+      </CoinsList>
+      )}
     </Container>
   );
 }
